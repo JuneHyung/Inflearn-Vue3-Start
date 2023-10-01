@@ -1,0 +1,25 @@
+<div id="app">
+  <!-- rendering 될 메세지 -->
+</div>
+
+<script>
+  const data = {
+    message: 'hi'
+  }
+
+  function render(sth) {
+    const div = document.querySelector('#app');
+    div.innerHTML = sth;
+  }
+
+  const app = new Proxy(data, {
+    get(target, property, receiver){
+      console.log('값 접근')
+    },
+    set(target, property, value, receiver){
+      console.log('값 갱신');
+      target[property] = value; // 속성 값 변경
+      render(value); // app에 message넣어 렌더링
+    }
+  })
+</script>
