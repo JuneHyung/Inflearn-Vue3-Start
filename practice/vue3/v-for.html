@@ -1,0 +1,15 @@
+<div id="app">
+  <ul>
+    <li v-for="(item, idx) in items">{{ item }}</li>
+  </ul>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  Vue.createApp({
+    data: function(){
+      return {
+        items: ['item01', 'item02', 'item03']
+      }
+    },
+  }).mount('#app');
+</script>
