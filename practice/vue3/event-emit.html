@@ -1,0 +1,30 @@
+<div id="app">
+  <app-contents @refresh="showAlert"></app-contents>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const appContents = {
+    template: `
+      <p>
+        <button @click="sendEvent">갱신</button>  
+      </p>
+    `,
+    methods: {
+      sendEvent(){
+        this.$emit('refresh');
+      }
+    }
+  };
+
+  // root component
+  Vue.createApp({
+    methods:{
+      showAlert(){
+        alert('refresh!')
+      }
+    },
+    components: {
+      "app-contents": appContents,
+    },
+  }).mount("#app");
+</script>

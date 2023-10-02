@@ -1,0 +1,46 @@
+<div id="app">
+  <app-header :app-title="message"></app-header>
+  <app-contents @login="changeMessage"></app-contents>
+</div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const appHeader = {
+    template: `
+      <div>
+        {{appTitle}}
+      </div>
+    `,
+    props:['appTitle']
+  }
+
+  const appContents = {
+    template: `
+      <p>
+        <button @click="sendEvent">로그인</button>  
+      </p>
+    `,
+    methods: {
+      sendEvent(){
+        this.$emit('login');
+      }
+    }
+  };
+
+  // root component
+  Vue.createApp({
+    components: {
+      "app-header": appHeader,
+      "app-contents": appContents,
+    },
+    data(){
+      return{
+        message: '로그인하세요.'
+      }
+    },
+    methods:{
+      changeMessage(){
+        this.message="로그인 되었습니다."
+      }
+    }
+  }).mount("#app");
+</script>
