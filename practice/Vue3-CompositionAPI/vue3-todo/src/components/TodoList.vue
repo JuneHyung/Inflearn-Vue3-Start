@@ -8,12 +8,17 @@
 </template>
 
 <script>
+import { watch } from 'vue';
   export default {
-    props: ['todoItems'],
-    setup(porops, context){
+    props: ['todoItems', 'userId'],
+    setup(props, {emit}){
       function removeTodo(item, idx){
-        context.emit('remove', item, idx)
+        emit('remove', item, idx)
       }
+
+      watch(props.todoItems, (newValue)=>{
+        console.log({newValue});
+      });
       return {removeTodo}
     }
   }
